@@ -1,0 +1,15 @@
+{
+  "name": "Visor de la Sagrada Biblia",
+  "short_name": "Biblia",
+  "description": "Navegación, búsqueda y notas de la Sagrada Biblia. Funciona sin conexión.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf8f1",
+  "theme_color": "#7a2e1f",
+  "lang": "es",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
