@@ -304,12 +304,14 @@ function seq() { const a = []; BK.forEach((b, bi) => b.chapters.forEach((c, ci) 
 function renderChapter(bi, ci, hv) {
   const b = BK[bi], c = b.chapters[ci]; cur = { bi, ci };
   const main = $('#main'); main.replaceChildren();
-  if (c.pre.length) main.append(docNode(c.pre));
+  let cut = c.pre.findIndex(it => it[0] === 't' || it[0] === 'r'); if (cut < 0) cut = c.pre.length;   // seccion arriba; titulo de pericopa y paralelos bajo el titulo del capitulo
+  if (cut) main.append(docNode(c.pre.slice(0, cut)));
   main.append(el('div', 'bk', b.name), el('h1', 'ch', chTitle(b, c)));
   const tools = el('div', 'tools'); main.append(tools);
   const nCh = new Set(); [...c.pre, ...c.body].forEach(it => idsIn(it[0] === 'v' ? it[2] : it[1]).forEach(i => nCh.add(i)));
   if (nCh.size) { const nb = el('button', 'btn', `Notas del capítulo (${nCh.size})`); nb.onclick = () => openChapterNotes(b, c, [...nCh]); tools.append(nb); }
   if (b.intro.length) { const ib = el('a', 'btn', 'Introducción del libro'); ib.href = '#/' + b.id; tools.append(ib); }
+  if (cut < c.pre.length) main.append(docNode(c.pre.slice(cut)));
   main.append(docNode(c.body));
   applyNotesMode();
   const all = seq(), pos = all.findIndex(x => x[0] === bi && x[1] === ci), P = all[pos - 1], N = all[pos + 1];

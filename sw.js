@@ -1,5 +1,5 @@
 // Service worker: guarda la interfaz para uso sin conexión. El texto bíblico vive en IndexedDB, no aquí.
-const CACHE = 'biblia-ui-v2';
+const CACHE = 'biblia-ui-v3';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
